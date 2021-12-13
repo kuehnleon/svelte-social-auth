@@ -46,6 +46,7 @@
   const dispatch = createEventDispatcher()
 
   let signinCta
+  export let scope = 'profile email openid'
   export let clientId
   export let text = 'Sign in with Google'
   let disabled = true
@@ -62,7 +63,7 @@
 
   function initialise () {
     gapi.load('auth2', async () => {
-      GoogleAuth = gapi.auth2.init({ client_id: clientId })
+      GoogleAuth = gapi.auth2.init({ client_id: clientId, scope })
       GoogleAuth.then(attachHandler, handleInitialisationError)
     })
   }
